@@ -282,6 +282,60 @@ h2 {
     border-radius: 4px;
 }
 
+.article-issue a {
+    color: #2ea44f;
+    text-decoration: underline;
+}
+
+.article-issue a:hover {
+    text-decoration: none;
+}
+
+/* GitHub Notice */
+.github-notice {
+    background-color: #f8f9fa;
+    border-left: 4px solid #2ea44f;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.github-notice h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #2ea44f;
+}
+
+.github-notice p {
+    margin-bottom: 10px;
+}
+
+.github-notice code {
+    background-color: #f1f1f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+/* Template Container */
+.template-container {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.template-code {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 4px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
 /* Footer Styles */
 footer {
     background-color: #333;

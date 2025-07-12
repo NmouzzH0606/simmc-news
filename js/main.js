@@ -6,112 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // News data
 const newsData = {
-    featured: [
-        {
-            id: 'welcome',
-            title: '欢迎来到满香日报',
-            category: '公告',
-            excerpt: '满香日报正式上线，为您带来最新、最全面的新闻报道。',
-            date: '2023-11-01',
-            author: '编辑部',
-            image: 'https://picsum.photos/id/1/600/400',
-            content: `
-                <h1>满香日报正式上线</h1>
-                <p>满香日报今日正式上线，我们将致力于为广大读者提供最新、最全面的新闻报道。</p>
-                <h2>我们的使命</h2>
-                <ul>
-                    <li>提供准确、及时的新闻报道</li>
-                    <li>深入分析热点事件</li>
-                    <li>关注社会各界动态</li>
-                </ul>
-                <h2>特色栏目</h2>
-                <ol>
-                    <li><strong>本地新闻</strong>: 关注身边事，了解本地动态</li>
-                    <li><strong>国际视野</strong>: 放眼全球，把握世界脉搏</li>
-                    <li><strong>科技前沿</strong>: 探索科技发展，洞察未来趋势</li>
-                </ol>
-                <p>感谢您的关注与支持，我们将不断努力，为您带来更优质的新闻内容。</p>
-            `,
-            featured: true
-        }
-    ],
-    latest: [
-        {
-            id: 'local-festival',
-            title: '本地文化节即将举行',
-            category: '本地',
-            excerpt: '一年一度的本地文化节将于下周举行，带来丰富多彩的文化活动。',
-            date: '2023-11-02',
-            author: '文化记者',
-            image: 'https://picsum.photos/id/3/600/400',
-            content: `
-                <h1>本地文化节即将举行</h1>
-                <p>一年一度的本地文化节将于下周举行，为期三天的活动将为市民带来丰富多彩的文化盛宴。</p>
-                <h2>活动亮点</h2>
-                <p>本次文化节将包括以下活动：</p>
-                <ul>
-                    <li><strong>传统艺术展示</strong>: 书法、国画、剪纸等传统艺术展示</li>
-                    <li><strong>民间音乐表演</strong>: 来自各地的民间艺术家带来精彩演出</li>
-                    <li><strong>美食街</strong>: 汇集各地特色美食</li>
-                    <li><strong>手工艺品市集</strong>: 展示和销售当地手工艺品</li>
-                </ul>
-                <h2>活动时间和地点</h2>
-                <ul>
-                    <li><strong>时间</strong>: 2023年11月10日至12日，每日09:00-21:00</li>
-                    <li><strong>地点</strong>: 市中心广场</li>
-                </ul>
-                <p>欢迎广大市民前来参加，共同感受传统文化的魅力！</p>
-            `,
-            featured: false
-        },
-        {
-            id: 'tech-innovation',
-            title: '最新科技创新成果展示',
-            category: '科技',
-            excerpt: '本周科技展览会上，多家企业展示了最新的科技创新成果。',
-            date: '2023-11-03',
-            author: '科技记者',
-            image: 'https://picsum.photos/id/4/600/400',
-            content: `
-                <h1>最新科技创新成果展示</h1>
-                <p>本周科技展览会上，多家企业展示了最新的科技创新成果，引发了广泛关注。</p>
-                <h2>展会亮点</h2>
-                <ul>
-                    <li><strong>人工智能应用</strong>: 多家企业展示了AI在医疗、教育、金融等领域的应用</li>
-                    <li><strong>可持续能源</strong>: 新型太阳能电池和风能技术展示</li>
-                    <li><strong>智能家居</strong>: 全屋智能系统和智能家电展示</li>
-                </ul>
-                <p>这些创新成果展示了科技发展的最新趋势，也为未来生活描绘了美好蓝图。</p>
-            `,
-            featured: true
-        },
-        {
-            id: 'global-summit',
-            title: '全球气候峰会达成新协议',
-            category: '国际',
-            excerpt: '各国领导人在气候峰会上达成新的减排协议，承诺加强环保措施。',
-            date: '2023-11-04',
-            author: '国际记者',
-            image: 'https://picsum.photos/id/5/600/400',
-            content: `
-                <h1>全球气候峰会达成新协议</h1>
-                <p>在刚刚结束的全球气候峰会上，各国领导人达成了新的减排协议，承诺加强环保措施，共同应对气候变化挑战。</p>
-                <h2>协议主要内容</h2>
-                <ul>
-                    <li>到2030年，全球碳排放量比2010年减少45%</li>
-                    <li>发达国家将提供更多资金帮助发展中国家实施环保措施</li>
-                    <li>加强对森林保护和可再生能源的投资</li>
-                </ul>
-                <p>此次协议的达成，标志着全球应对气候变化进入了新阶段，各国将共同努力，保护我们的地球家园。</p>
-            `,
-            featured: false
-        }
-    ]
+    featured: [],
+    latest: []
+};
+
+// GitHub repository information
+const githubRepo = {
+    owner: 'NmouzzH0606',
+    repo: 'simmc-news'
 };
 
 // Function to load news
-function loadNews() {
+async function loadNews() {
     try {
+        await fetchNewsFromGitHub();
+        
         // Sort latest news by date (newest first)
         newsData.latest.sort((a, b) => new Date(b.date) - new Date(a.date));
         
@@ -134,7 +43,109 @@ function loadNews() {
     } catch (error) {
         console.error('Error loading news:', error);
         showNoNewsMessage();
+        
+        // Add default news if GitHub API fails
+        addDefaultNews();
     }
+}
+
+// Function to fetch news from GitHub Issues
+async function fetchNewsFromGitHub() {
+    try {
+        // Fetch issues from GitHub API
+        const response = await fetch(`https://api.github.com/repos/${githubRepo.owner}/${githubRepo.repo}/issues?state=all&labels=news`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch news from GitHub: ${response.status} ${response.statusText}`);
+        }
+        
+        const issues = await response.json();
+        
+        // Process each issue as a news item
+        for (const issue of issues) {
+            if (issue.body) {
+                const newsItem = processNewsContent(issue.body, issue.number);
+                if (newsItem) {
+                    // Add to latest news
+                    newsData.latest.push(newsItem);
+                    
+                    // Add to featured if it's marked as featured
+                    if (newsItem.featured) {
+                        newsData.featured.push(newsItem);
+                    }
+                }
+            }
+        }
+        
+        // If no featured news, use the first item as featured
+        if (newsData.featured.length === 0 && newsData.latest.length > 0) {
+            newsData.featured.push(newsData.latest[0]);
+        }
+    } catch (error) {
+        console.error('Error fetching news from GitHub:', error);
+        throw error;
+    }
+}
+
+// Function to process news content from GitHub Issue
+function processNewsContent(content, issueNumber) {
+    try {
+        // Extract metadata from the Markdown content
+        const metadata = extractMetadata(content);
+        
+        // Remove metadata section from content
+        const contentWithoutMetadata = content.replace(/^---\s*\n([\s\S]*?)\n---\s*\n/, '');
+        
+        // Parse the Markdown content
+        const htmlContent = marked.parse(contentWithoutMetadata);
+        
+        return {
+            id: `issue-${issueNumber}`,
+            title: metadata.title || `News #${issueNumber}`,
+            category: metadata.category || 'General',
+            excerpt: metadata.excerpt || generateExcerpt(htmlContent),
+            date: metadata.date || new Date().toISOString().split('T')[0],
+            author: metadata.author || 'Anonymous',
+            image: metadata.image || `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/600/400`,
+            content: htmlContent,
+            featured: metadata.featured === 'true' || metadata.featured === true,
+            issueNumber: issueNumber
+        };
+    } catch (error) {
+        console.error(`Error processing news content from issue #${issueNumber}:`, error);
+        return null;
+    }
+}
+
+// Function to add default news if GitHub API fails
+function addDefaultNews() {
+    // Add a default news item
+    const defaultNews = {
+        id: 'default',
+        title: '欢迎来到满香日报',
+        category: '公告',
+        excerpt: '满香日报正式上线，为您带来最新、最全面的新闻报道。',
+        date: new Date().toISOString().split('T')[0],
+        author: '编辑部',
+        image: 'https://picsum.photos/id/1/600/400',
+        content: `
+            <h1>欢迎来到满香日报</h1>
+            <p>满香日报正式上线，我们将致力于为广大读者提供最新、最全面的新闻报道。</p>
+            <p>目前网站正在建设中，您可以通过点击"提交新闻"按钮来提交新闻文章。</p>
+            <h2>如何提交新闻</h2>
+            <p>1. 点击顶部导航栏的"提交新闻"按钮</p>
+            <p>2. 按照页面指引，通过GitHub Issues提交您的新闻</p>
+            <p>3. 管理员审核后，您的新闻将会显示在网站上</p>
+            <p>感谢您的支持！</p>
+        `,
+        featured: true
+    };
+    
+    newsData.latest.push(defaultNews);
+    newsData.featured.push(defaultNews);
+    
+    // Render news
+    renderFeaturedNews();
+    renderLatestNews();
 }
 
 // Function to show a message when no news is available
@@ -143,12 +154,47 @@ function showNoNewsMessage() {
     const latestContainer = document.getElementById('latest-news-container');
     
     if (featuredContainer) {
-        featuredContainer.innerHTML = '<div class="no-news">暂无头条新闻，请上传新闻文章</div>';
+        featuredContainer.innerHTML = '<div class="no-news">暂无头条新闻，请点击"提交新闻"添加新闻文章</div>';
     }
     
     if (latestContainer) {
-        latestContainer.innerHTML = '<div class="no-news">暂无最新新闻，请上传新闻文章</div>';
+        latestContainer.innerHTML = '<div class="no-news">暂无最新新闻，请点击"提交新闻"添加新闻文章</div>';
     }
+}
+
+// Function to extract metadata from Markdown content
+function extractMetadata(content) {
+    const metadata = {};
+    const metadataRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
+    const match = content.match(metadataRegex);
+    
+    if (match && match[1]) {
+        const metadataLines = match[1].split('\n');
+        metadataLines.forEach(line => {
+            // Split by first colon only
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > 0) {
+                const key = line.substring(0, colonIndex).trim();
+                const value = line.substring(colonIndex + 1).trim();
+                if (key && value) {
+                    metadata[key] = value;
+                }
+            }
+        });
+    }
+    
+    return metadata;
+}
+
+// Function to generate an excerpt from HTML content
+function generateExcerpt(htmlContent) {
+    // Create a temporary element to parse HTML
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = htmlContent;
+    
+    // Get text content and limit to 150 characters
+    const text = tempElement.textContent || '';
+    return text.substring(0, 150) + (text.length > 150 ? '...' : '');
 }
 
 // Function to render featured news
@@ -246,6 +292,7 @@ function openArticle(news) {
             <span class="article-category">${news.category}</span>
             <span class="article-author">作者: ${news.author}</span>
             <span class="article-date">发布日期: ${news.date}</span>
+            ${news.issueNumber ? `<span class="article-issue"><a href="https://github.com/${githubRepo.owner}/${githubRepo.repo}/issues/${news.issueNumber}" target="_blank">查看原文</a></span>` : ''}
         </div>
         <div class="article-body">
             ${news.content}
