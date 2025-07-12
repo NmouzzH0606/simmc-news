@@ -4,6 +4,12 @@
 
 ![满香日报截图](https://picsum.photos/id/42/800/400)
 
+## 在线预览
+
+访问 [满香日报在线版](https://NmouzzH0606.github.io/simmc-news) 查看网站的静态版本。
+
+注意：在线版本是静态网站，不支持上传新闻功能。如需完整功能，请按照下方说明在本地运行。
+
 ## 功能特点
 
 - 使用 HTML, CSS 和 JavaScript 构建
@@ -15,13 +21,15 @@
 
 ## 如何使用
 
-### 安装依赖
+### 本地完整版
+
+#### 安装依赖
 
 ```bash
 npm install
 ```
 
-### 启动服务器
+#### 启动服务器
 
 ```bash
 npm start
@@ -35,15 +43,24 @@ npm run dev
 
 服务器启动后，访问 http://localhost:3000 即可查看网站。
 
+### GitHub Pages 静态版
+
+静态版本已部署在 GitHub Pages 上，访问 https://NmouzzH0606.github.io/simmc-news 即可查看。
+
+静态版本中：
+- 可以浏览预设的新闻文章
+- 可以按分类筛选新闻
+- 不支持上传新闻功能
+
 ### 添加新闻文章
 
 有两种方法可以添加新闻文章：
 
-1. **通过网页上传**：
+1. **通过网页上传**（仅限本地完整版）：
    - 访问 http://localhost:3000/upload.html
    - 填写新闻信息并上传
 
-2. **手动添加**：
+2. **手动添加**（仅限本地完整版）：
    - 将 Markdown 文件放入 `news` 目录
    - Markdown 文件应该包含以下格式的元数据：
 
@@ -70,10 +87,8 @@ featured: true/false
 │   └── style.css          # 样式文件
 ├── js/
 │   └── main.js            # JavaScript 主文件
-├── news/                  # 新闻文章目录
 ├── index.html             # 主页
 ├── upload.html            # 上传页面
-├── server.js              # 服务器文件
 ├── package.json           # 项目配置
 └── README.md              # 项目说明
 ```
@@ -83,8 +98,6 @@ featured: true/false
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- Node.js
-- Express
 - Marked (Markdown 解析)
 
 ## 部署
@@ -97,19 +110,30 @@ git clone https://github.com/NmouzzH0606/simmc-news.git
 cd simmc-news
 ```
 
-2. 安装依赖
+2. 切换到主分支获取完整功能
+```bash
+git checkout master
+```
+
+3. 安装依赖
 ```bash
 npm install
 ```
 
-3. 启动服务器
+4. 启动服务器
 ```bash
 npm start
 ```
 
-### 线上部署
+### GitHub Pages 部署
 
-可以部署到任何支持 Node.js 的平台，如 Heroku、Vercel、Netlify 等。
+项目已经部署在 GitHub Pages 上，访问 https://NmouzzH0606.github.io/simmc-news 即可查看。
+
+如果你想部署自己的版本：
+
+1. Fork 这个仓库
+2. 在仓库设置中启用 GitHub Pages
+3. 选择 gh-pages 分支作为源分支
 
 ## 贡献
 

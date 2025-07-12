@@ -80,6 +80,32 @@
         .checkbox-group input[type="checkbox"] {
             margin-right: 10px;
         }
+        
+        .github-pages-notice {
+            background-color: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .github-pages-notice h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+        
+        .github-pages-notice p {
+            margin-bottom: 10px;
+        }
+        
+        .github-pages-notice code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -108,7 +134,21 @@
     <main class="container">
         <div class="upload-container">
             <h2>上传新闻文章</h2>
-            <p>请填写以下信息，创建一篇新的新闻文章。</p>
+            
+            <div class="github-pages-notice">
+                <h3>GitHub Pages 静态网站提示</h3>
+                <p>您当前正在访问部署在 GitHub Pages 上的静态版本网站。由于 GitHub Pages 只支持静态内容，上传功能在此环境下不可用。</p>
+                <p>如需完整功能，请按照以下步骤在本地运行：</p>
+                <ol>
+                    <li>克隆仓库: <code>git clone https://github.com/NmouzzH0606/simmc-news.git</code></li>
+                    <li>安装依赖: <code>npm install</code></li>
+                    <li>启动服务器: <code>npm start</code></li>
+                    <li>访问: <code>http://localhost:3000</code></li>
+                </ol>
+                <p>或者，您可以直接在 GitHub 上编辑 <code>js/main.js</code> 文件中的新闻数据。</p>
+            </div>
+            
+            <p>请填写以下信息，创建一篇新的新闻文章（仅预览，无法保存）。</p>
             
             <form id="upload-form" enctype="multipart/form-data">
                 <div class="form-group">
@@ -162,7 +202,6 @@
                 </div>
                 
                 <button type="button" id="preview-btn">预览</button>
-                <button type="submit">上传</button>
                 <button type="button" id="reset-btn">重置</button>
             </form>
             
@@ -254,66 +293,10 @@ ${content}
                 previewContainer.style.display = 'none';
             });
             
-            // Form submit handler
-            form.addEventListener('submit', async function(e) {
+            // Form submit handler - disabled for GitHub Pages
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const title = document.getElementById('title').value;
-                const category = document.getElementById('category').value;
-                const author = document.getElementById('author').value;
-                const date = document.getElementById('date').value;
-                const image = document.getElementById('image').value;
-                const excerpt = document.getElementById('excerpt').value;
-                const content = document.getElementById('content').value;
-                const featured = document.getElementById('featured').checked;
-                const filename = document.getElementById('filename').value;
-                
-                // Generate Markdown content
-                const markdown = `---
-title: ${title}
-category: ${category}
-date: ${date}
-author: ${author}
-image: ${image}
-excerpt: ${excerpt}
-featured: ${featured}
----
-
-# ${title}
-
-${content}
-`;
-                
-                // Create a file from the Markdown content
-                const file = new File([markdown], `${filename}.md`, { type: 'text/markdown' });
-                
-                // Create a FormData object
-                const formData = new FormData();
-                formData.append('newsFile', file);
-                
-                try {
-                    // Upload the file
-                    const response = await fetch('/api/news/upload', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error(`Failed to upload file: ${response.status} ${response.statusText}`);
-                    }
-                    
-                    const result = await response.json();
-                    
-                    if (result.success) {
-                        alert('文件上传成功！');
-                        window.location.href = 'index.html';
-                    } else {
-                        alert(`上传失败: ${result.error}`);
-                    }
-                } catch (error) {
-                    console.error('Error uploading file:', error);
-                    alert(`上传失败: ${error.message}`);
-                }
+                alert('上传功能在 GitHub Pages 静态网站上不可用。请在本地运行完整版本以使用此功能。');
             });
         });
     </script>
