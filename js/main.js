@@ -44,8 +44,8 @@ async function loadNews() {
         console.error('Error loading news:', error);
         showNoNewsMessage();
         
-        // Add default news if GitHub API fails
-        addDefaultNews();
+        // 移除默认新闻功能
+        // addDefaultNews();
     }
 }
 
