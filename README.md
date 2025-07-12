@@ -93,7 +93,7 @@ featured: true/false
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/YOUR_USERNAME/simmc-news.git
+git clone https://github.com/NmouzzH0606/simmc-news.git
 cd simmc-news
 ```
 
